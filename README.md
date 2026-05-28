@@ -103,10 +103,10 @@ k8s-networkpolicy-lab/
 │   └── allow-client.yaml
 │
 ├── screenshots/
-│   ├── before-policy-access.png
 │   ├── allow-client-to-api.png
 │   ├── deny-default-to-api.png
-│   └── networkpolicy-list.png
+│   ├── networkpolicy-list.png
+│   └── pods-running.png
 │
 └── README.md
 ```
@@ -182,23 +182,33 @@ namespaceSelector:
 
 ## Verification
 
-### Before Applying NetworkPolicy
+### Pod Status
 
-Kubernetes는 기본적으로 모든 Pod 간 통신이 허용된다.
+정상적으로 모든 Pod가 Running 상태인지 확인하였다.
 
-#### Result
+```bash
+kubectl get pods -A
+```
 
-default namespace → api namespace 접근 가능
-
-![before](./screenshots/before-policy-access.png)
+![pods](./screenshots/pods-running.png)
 
 ---
 
-### After Applying NetworkPolicy
+### NetworkPolicy Applied
 
-`default deny` 적용 후 `client namespace`만 허용하였다.
+적용된 NetworkPolicy를 확인하였다.
 
-#### Allowed Case
+```bash
+kubectl get networkpolicy -A
+```
+
+![networkpolicy](./screenshots/networkpolicy-list.png)
+
+---
+
+### Allowed Case
+
+`client namespace`에서는 `api namespace` 접근이 가능하다.
 
 ```bash
 kubectl exec -n client client-pod -- \
@@ -211,7 +221,9 @@ curl api-service.api
 
 ---
 
-#### Denied Case
+### Denied Case
+
+`default namespace`에서는 `api namespace` 접근이 차단된다.
 
 ```bash
 kubectl run test-pod \
