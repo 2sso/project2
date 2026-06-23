@@ -1,4 +1,4 @@
-# Kubernetes NetworkPolicy 기반 Zero Trust 네트워크 설계 프로젝트
+# Kubernetes NetworkPolicy 기반 최소 권한 네트워크 설계 프로젝트
 
 > Kubernetes Pod 간 통신을 최소 권한 원칙(Least Privilege) 기반으로 제어하기 위한 NetworkPolicy 실습 프로젝트
 
