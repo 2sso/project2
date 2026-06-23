@@ -10,7 +10,7 @@ Kubernetes는 기본적으로 모든 Pod 간 통신이 가능한 **flat network 
 
 이러한 구조는 운영 환경에서 특정 서비스가 침해되었을 경우 **lateral movement(내부 확산)** 위험을 증가시킬 수 있다.
 
-본 프로젝트는 Kubernetes의 `NetworkPolicy`를 활용하여 **default deny 기반 Zero Trust 네트워크 구조**를 설계하고, 특정 namespace에서만 API Pod 접근을 허용하도록 구현하였다.
+본 프로젝트는 Kubernetes의 `NetworkPolicy`를 활용하여 **default deny 기반 최소 권한 네트워크 구조**를 설계하고, 특정 namespace에서만 API Pod 접근을 허용하도록 구현하였다.
 
 또한 실제 Allow / Deny 테스트를 통해 정책이 의도대로 동작하는지 검증하였다.
 
@@ -280,6 +280,6 @@ curl api-service.api
 
 Kubernetes는 기본적으로 모든 Pod 간 통신이 허용되는 구조를 가진다.
 
-본 프로젝트에서는 `NetworkPolicy`를 활용하여 **default deny 기반 Zero Trust 네트워크 구조**를 설계하고, 특정 namespace만 API Pod 접근을 허용하도록 구현하였다.
+본 프로젝트에서는 `NetworkPolicy`를 활용하여 **default deny 기반 최소 권한 네트워크 구조**를 설계하고, 특정 namespace만 API Pod 접근을 허용하도록 구현하였다.
 
 이를 통해 **Kubernetes 네트워크 보안 설계 역량과 실제 정책 검증 능력**을 확인할 수 있었다.
